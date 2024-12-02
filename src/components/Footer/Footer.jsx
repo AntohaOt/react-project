@@ -18,7 +18,7 @@ const Footer = () => {
                 </div>
                 <div className="footer__right">
                     <Text size='m' lineHeight="m" view="primary" className="footer__title">
-                        © Проект на реакте
+                        © TechnoCreative
                     </Text>
                 </div>
             </footer>
@@ -33,7 +33,7 @@ const Footer = () => {
             </div>
             <div className="footer__right">
                 <Text size='m' lineHeight="m" view="primary" className="footer__title">
-                    © Проект на реакте
+                    © TechnoCreative
                 </Text>
             </div>
         </footer>
