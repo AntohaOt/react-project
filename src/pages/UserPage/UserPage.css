@@ -1,0 +1,67 @@
+.user-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #d4d4d4;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .user-profile {
+    background-color: #ececec;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.641);
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .user-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  
+  .user-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .user-info {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    margin-top: 50px;
+  }
+  
+  @media (max-width: 600px) {
+    .user-profile {
+      padding: 15px;
+      width: 90%;
+    }
+  
+    .user-avatar {
+      width: 120px;
+      height: 120px;
+    }
+  
+    .user-name {
+      font-size: 20px;
+    }
+  
+    .user-info {
+      font-size: 14px;
+    }
+  }
