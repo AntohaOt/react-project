@@ -1,76 +1,58 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { fakeServices } from "../../__mocks__/FakeDate";
-import { ApiPath } from "../../path";
+import { useParams } from "react-router-dom";
+import { Loader } from "@consta/uikit/Loader";
 import "./ServiceDetailsPage.css";
-import { Loader } from '@consta/uikit/Loader';
 
+const ServiceDetail = () => {
+  const { id } = useParams();
+  const [service, setService] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-const ServiceDetailsPage = () => {
-    const { id } = useParams();
-    const [serviceId, setServiceId] = useState(Number(id));
-    const [service, setService] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
-
-    const totalServices = fakeServices.length;
-
-    useEffect(() => {
-        let isNeedUpdate = true;
-        setIsLoading(true);
-        fetch(`${ApiPath.services}/${serviceId}`, {
-            method: 'GET',
+  useEffect(() => {
+    const currentUserID = localStorage.getItem("id");
+    if (currentUserID) {
+      setIsLoading(true);
+      setIsAuthenticated(true);
+      fetch(`https://673423afa042ab85d1190055.mockapi.io/api/v1/services/${id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data !== "Not found") {
+            setService(data);
+          }
         })
-            .then((response) => response.json())
-            .then((service) => {
-                if (isNeedUpdate) {
-                    setService(service);
-                    setIsLoading(false);
-                }
-            })
-            .catch(() => {
-                setService(null);
-                setIsLoading(false);
-            });
+        .catch((error) => {
+          console.error("Error fetching the service:", error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  }, [id]);
 
-        return () => (isNeedUpdate = false);
-    }, [serviceId]);
-
-    const handlePrev = () => {
-        if (serviceId > 1) setServiceId(serviceId - 1);
-    };
-
-    const handleNext = () => {
-        if (serviceId < totalServices) setServiceId(serviceId + 1);
-    };
-
+  if (isLoading) {
     return (
-        <div className="service-details-page">
-            {isLoading ? (
-                <Loader size="m" />
-            ) : service ? (
-                <div className="service-content">
-                    <img
-                        src={fakeServices[serviceId - 1]?.image || ""}
-                        alt={service.name}
-                        className="service-image"
-                    />
-                    <h3 className="service-title">Название: {service.name}</h3>
-                    <h3 className="service-description">Описание: {service.description}</h3>
-                </div>
-            ) : (
-                <div className="error-message">Сервис не найден</div>
-            )}
-            <div className="service-indicator">
-                <button onClick={handlePrev} className="btn" disabled={serviceId <= 1}>
-                    Назад
-                </button>
-                <h3 className="indicator">Индикатор: {serviceId}</h3>
-                <button onClick={handleNext} className="btn" disabled={serviceId >= totalServices}>
-                    Вперёд
-                </button>
-            </div>
-        </div>
+      <div className="loader-container">
+        <Loader size="m" />
+      </div>
     );
+  }
+
+  return (
+    <div className="service-details-page">
+      {!isAuthenticated ? (
+        <div className="auth-message">Вы должны войти в аккаунт.</div>
+      ) : service ? (
+        <div className="service-card">
+          <img src={service.image} alt={service.name} />
+          <h3>{service.name}</h3>
+          <p>{service.description}</p>
+        </div>
+      ) : (
+        <div className="error-message">Услуга не найдена.</div>
+      )}
+    </div>
+  );
 };
 
-export default ServiceDetailsPage;
+export default ServiceDetail;

@@ -9,74 +9,96 @@
 
 .login-form {
   background-color: #ececec;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 500px;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  width: 100%;
   max-width: 300px;
 }
 
-h1 {
+.login-header {
   text-align: center;
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: bold;
   color: #333;
+  margin-bottom: 25px;
 }
 
-input {
+.login-field {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.login-field input {
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
+  padding: 10px 12px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
+  border-radius: 6px;
+  font-size: 15px;
   box-sizing: border-box;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input:focus {
+.login-field input:focus {
   border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
   outline: none;
 }
 
-button {
+.login-button {
+  display: block;
   width: 100%;
   padding: 12px;
-  background-color: #3657ff;
-  color: white;
   font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-button:hover {
+.login-button:hover {
   background-color: #0056b3;
+  transform: scale(1.02);
 }
 
-.welcome-message h1 {
+.error-message {
+  color: red;
+  font-size: 14px;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.welcome-message {
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   color: #333;
   cursor: pointer;
+  margin-top: 20px;
   transition: color 0.3s ease;
 }
 
-.welcome-message h1:hover {
+.welcome-message:hover {
   color: #007bff;
 }
 
 @media (max-width: 600px) {
   .login-form {
-    padding: 20px;
+      padding: 20px;
   }
 
-  input, button {
-    font-size: 14px;
+  .login-header {
+      font-size: 20px;
   }
 
-  h1 {
-    font-size: 20px;
+  .login-field input {
+      font-size: 14px;
+      padding: 8px 10px;
+  }
+
+  .login-button {
+      font-size: 14px;
+      padding: 10px;
   }
 }

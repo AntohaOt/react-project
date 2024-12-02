@@ -1,4 +1,4 @@
-.card-list {
+main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -7,23 +7,21 @@
     background-color: #d4d4d4;
   }
   
-  .card-link {
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .card-item {
+  .company-card {
     display: flex;
     flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.42);
     align-items: center;
     width: 400px;
     border-radius: 8px;
     overflow: hidden;
     background-color: #ececec;
+    text-decoration: none;
+    color: inherit;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   
-  .card-item:hover {
+  .company-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
@@ -34,35 +32,36 @@
     object-fit: cover;
   }
   
-  .card-content {
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    text-align: center;
-  }
-  
-  .card-title {
-    margin: 0;
+  .company-card h3 {
+    margin: 16px 0 8px;
     font-size: 18px;
     font-weight: bold;
     color: #333333;
+    text-align: center;
   }
   
-  .card-description {
+  .company-card p {
     margin: 0;
     font-size: 14px;
     color: #555555;
+    text-align: center;
   }
-
+  
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
   @media (max-width: 1024px) {
-    .card-list {
+    main {
       grid-template-columns: repeat(2, 1fr);
     }
   }
   
   @media (max-width: 768px) {
-    .card-list {
+    main {
       grid-template-columns: 1fr;
     }
   }

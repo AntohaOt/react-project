@@ -1,55 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { Card } from "@consta/uikit/Card";
-import { Text } from "@consta/uikit/Text";
-import { Loader } from "@consta/uikit/Loader";
-import "./Card.css";
-import { fetchNews } from "../../store/Api";
+import { useNavigate } from 'react-router-dom';
+import { Card } from "@consta/uikit/Card"
+import { Layout } from "@consta/uikit/Layout"
+import { Text } from "@consta/uikit/Text"
 
-const CardMainP = () => {
-    const [news, setNews] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        fetchNews()()
-            .then((data) => {
-                setNews(data);
-                setIsLoading(false);
-            })
-            .catch(() => {
-                setIsLoading(false);
-            });
-    }, []);
+const MyCard = ({ imgURI, name, desc, id }) => {
+  const navigate = useNavigate();
 
-    return (
-        <div className="news-list">
-            {isLoading ? (
-                <Loader size="m" />
-            ) : (
-                news.map((item) => (
-                    <Card
-                        key={item.id}
-                        verticalSpace="m"
-                        horizontalSpace="l"
-                        shadow
-                        className="news-item"
-                    >
-                        <img src={item.image} alt={item.title} className="news-image" />
-                        <div className="news-content">
-                            <Text size="xl" weight="bold" className="news-title">
-                                {item.name}
-                            </Text>
-                            <Text size="m" view="secondary" className="news-description">
-                                {item.description}
-                            </Text>
-                            <Text size="m" view="secondary" className="news-date">
-                                {item.createdAt.slice(0, 10)}
-                            </Text>
-                        </div>
-                    </Card>
-                ))
-            )}
-        </div>
-    );
+  const handleClick = () => {
+    navigate(`/services/${id}`);
+  };
+
+  return (
+    <div onClick={handleClick} style={{ display: "flex", alignItems: "center", flex: '1 1 calc(50% - 5px)', margin: '2.5px' }}>
+      <Card style={{ minHeight: "100px", width: "100%", maxHeight: "200px" }}>
+        <Layout direction="row" style={{gap: "20px"}}>
+          <img src={imgURI} alt={name} style={{ minWidth: "50px", maxHeight: "200px", objectFit: "cover" }} />
+          <Layout direction="column" style={{paddingTop: "5px"}}>
+            <Text weight="bold" size="3xl">{name}</Text>
+            <br/>
+            <Text weight="regular">{desc}</Text>
+          </Layout>
+        </Layout>
+      </Card>
+    </div>
+  );
 };
 
-export default CardMainP;
+export default MyCard;

@@ -1,18 +1,15 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+import {Outlet} from "react-router-dom";
 
-const DefaultLayout = () => {
+const MainLayout = () => {
     return (
         <div>
-            <Header></Header>
+            Menu
             <main>
                 <Outlet />
             </main>
-            <Footer></Footer>
         </div>
-    );
-};
+    )
+}
 
-export default DefaultLayout;
+export default MainLayout;
