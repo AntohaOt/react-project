@@ -7,6 +7,7 @@ export const profileSlice = createSlice({
   },
   reducers: {
     set: (state, action) => {
+      localStorage.setItem("user", JSON.stringify(action.payload));
       state.value = action.payload;
     },
     clear: state => {
@@ -15,7 +16,7 @@ export const profileSlice = createSlice({
   }
 })
 
-// Action creators are generated for each case reducer function
+
 export const { set, clear } = profileSlice.actions
 
 export default profileSlice.reducer
