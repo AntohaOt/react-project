@@ -6,6 +6,7 @@ import { Text } from '@consta/uikit/Text';
 
 const Footer = () => {
     const currentUserID = localStorage.getItem('id');
+    const currentYear = new Date().getFullYear();
 
     return (
         <>
@@ -18,7 +19,7 @@ const Footer = () => {
                 </div>
                 <div className="footer__right">
                     <Text size='m' lineHeight="m" view="primary" className="footer__title">
-                        © Проект на реакте
+                        © {currentYear} Techocreative
                     </Text>
                 </div>
             </footer>
@@ -33,7 +34,7 @@ const Footer = () => {
             </div>
             <div className="footer__right">
                 <Text size='m' lineHeight="m" view="primary" className="footer__title">
-                    © Проект на реакте
+                    © {currentYear} TechnoCreative
                 </Text>
             </div>
         </footer>

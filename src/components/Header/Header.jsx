@@ -37,7 +37,7 @@ const Header = () => {
             </div>
             <div className="header__nav-right">
                 <NavLink style={{marginBottom: "1rem"}} to={`/user/${currentUserID}`} className="header__nav-button" activeclassname="active">
-                    <Button size='m' label="Профиль" form="round" />
+                    <Button size='m' label="Emily Johnson" form="round" />
                 </NavLink> 
                 <div style={{marginTop: "1rem"}} onClick={handleLogOut} className="header__nav-button" activeclassname="active">
                     <Button size='m' label="Выход" form="round" />
